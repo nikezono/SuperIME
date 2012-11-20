@@ -96,7 +96,7 @@
 											<string key="NSFrameSize">{198, 77}</string>
 											<reference key="NSSuperview" ref="225386885"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="634575416"/>
+											<reference key="NSNextKeyView" ref="705240079"/>
 											<object class="NSTextContainer" key="NSTextContainer" id="847492557">
 												<object class="NSLayoutManager" key="NSLayoutManager">
 													<object class="NSTextStorage" key="NSTextStorage">
@@ -378,7 +378,7 @@ wGw</bytes>
 							<string key="NSFrame">{{20, 20}, {200, 79}}</string>
 							<reference key="NSSuperview" ref="158908139"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="705240079"/>
+							<reference key="NSNextKeyView" ref="225386885"/>
 							<int key="NSsFlags">133122</int>
 							<reference key="NSVScroller" ref="705240079"/>
 							<reference key="NSHScroller" ref="469986557"/>
@@ -393,22 +393,25 @@ wGw</bytes>
 							<string key="NSFrame">{{201, -1}, {39, 38}}</string>
 							<reference key="NSSuperview" ref="158908139"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:1574</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="308527026">
 								<int key="NSCellFlags">67108864</int>
-								<int key="NSCellFlags2">0</int>
+								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents"/>
-								<object class="NSFont" key="NSSupport" id="196168362">
+								<object class="NSFont" key="NSSupport">
 									<string key="NSName">LucidaGrande</string>
-									<double key="NSSize">10</double>
-									<int key="NSfFlags">2843</int>
+									<double key="NSSize">13</double>
+									<int key="NSfFlags">1044</int>
 								</object>
 								<string key="NSCellIdentifier">_NS:1574</string>
 								<reference key="NSControlView" ref="84501798"/>
-								<int key="NSButtonFlags">-2037645312</int>
-								<int key="NSButtonFlags2">135</int>
+								<int key="NSButtonFlags">-2031353856</int>
+								<int key="NSButtonFlags2">71</int>
+								<object class="NSCustomResource" key="NSNormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">twitter_button</string>
+								</object>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">200</int>
@@ -429,11 +432,19 @@ wGw</bytes>
 								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">0</int>
 								<string key="NSContents"/>
-								<reference key="NSSupport" ref="196168362"/>
+								<object class="NSFont" key="NSSupport">
+									<string key="NSName">LucidaGrande</string>
+									<double key="NSSize">10</double>
+									<int key="NSfFlags">2843</int>
+								</object>
 								<string key="NSCellIdentifier">_NS:1574</string>
 								<reference key="NSControlView" ref="634575416"/>
-								<int key="NSButtonFlags">-2037645312</int>
+								<int key="NSButtonFlags">-2033451008</int>
 								<int key="NSButtonFlags2">135</int>
+								<object class="NSCustomResource" key="NSNormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">message-icons-png-6611</string>
+								</object>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">200</int>
@@ -737,7 +748,7 @@ wGw</bytes>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">406</int>
+			<int key="maxID">408</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -941,5 +952,18 @@ wGw</bytes>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>message-icons-png-6611</string>
+				<string>twitter_button</string>
+			</object>
+			<object class="NSArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{512, 512}</string>
+				<string>{178, 144}</string>
+			</object>
+		</object>
 	</data>
 </archive>

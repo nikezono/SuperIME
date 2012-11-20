@@ -49,11 +49,15 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		9B140288165BD393006E7650 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B140287165BD393006E7650 /* twitter.png */; };
+		9B14028A165BD418006E7650 /* twitter_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B140289165BD418006E7650 /* twitter_button.png */; };
+		9B14028C165BD50C006E7650 /* message-icons-png-6611.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B14028B165BD50B006E7650 /* message-icons-png-6611.png */; };
 		9BCCDEB6165B872700C52B31 /* Ejje.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BCCDEB2165B872700C52B31 /* Ejje.rb */; };
 		9BCCDEB7165B872700C52B31 /* Reflexa.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BCCDEB3165B872700C52B31 /* Reflexa.rb */; };
 		9BCCDEB8165B872700C52B31 /* Weblio.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BCCDEB4165B872700C52B31 /* Weblio.rb */; };
 		9BCCDEB9165B872700C52B31 /* Yomi.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BCCDEB5165B872700C52B31 /* Yomi.rb */; };
 		9BCE15CB165B8981009EF98D /* GyaimController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BCE15CA165B8981009EF98D /* GyaimController.rb */; };
+		9BDD09CF165BD78800039B73 /* Text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9BDD09CE165BD78800039B73 /* Text.txt */; };
 		CE06B22C14C5974700B8174D /* ConnectionDict.rb in Resources */ = {isa = PBXBuildFile; fileRef = CE06B22B14C5974700B8174D /* ConnectionDict.rb */; };
 		CE06B23014C59AEB00B8174D /* dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = CE06B22F14C59AEB00B8174D /* dict.txt */; };
 		CE2F8D0B132ED116006FAB89 /* icon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = CE2F8D0A132ED116006FAB89 /* icon.tiff */; };
@@ -94,11 +98,15 @@
 		4DE3BE130D8651D900ECA448 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = /Library/Frameworks/MacRuby.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Gyaim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gyaim.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B140287165BD393006E7650 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = twitter.png; path = Resources/twitter.png; sourceTree = "<group>"; };
+		9B140289165BD418006E7650 /* twitter_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_button.png; sourceTree = "<group>"; };
+		9B14028B165BD50B006E7650 /* message-icons-png-6611.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message-icons-png-6611.png"; sourceTree = "<group>"; };
 		9BCCDEB2165B872700C52B31 /* Ejje.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Ejje.rb; sourceTree = "<group>"; };
 		9BCCDEB3165B872700C52B31 /* Reflexa.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Reflexa.rb; sourceTree = "<group>"; };
 		9BCCDEB4165B872700C52B31 /* Weblio.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Weblio.rb; sourceTree = "<group>"; };
 		9BCCDEB5165B872700C52B31 /* Yomi.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Yomi.rb; sourceTree = "<group>"; };
 		9BCE15CA165B8981009EF98D /* GyaimController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = GyaimController.rb; sourceTree = "<group>"; };
+		9BDD09CE165BD78800039B73 /* Text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Text.txt; sourceTree = "<group>"; };
 		CE06B22B14C5974700B8174D /* ConnectionDict.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = ConnectionDict.rb; path = WordSearch/ConnectionDict.rb; sourceTree = "<group>"; };
 		CE06B22F14C59AEB00B8174D /* dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dict.txt; path = Resources/dict.txt; sourceTree = "<group>"; };
 		CE2F8D0A132ED116006FAB89 /* icon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = icon.tiff; path = Resources/icon.tiff; sourceTree = "<group>"; };
@@ -210,8 +218,12 @@
 			children = (
 				CEC9980A1330F0570003090F /* fugodic.txt */,
 				CEBAEDD7132ED1AA00DAF9FC /* candwin.png */,
+				9BDD09CE165BD78800039B73 /* Text.txt */,
+				9B140287165BD393006E7650 /* twitter.png */,
 				CE06B22F14C59AEB00B8174D /* dict.txt */,
+				9B140289165BD418006E7650 /* twitter_button.png */,
 				CE2F8D0A132ED116006FAB89 /* icon.tiff */,
+				9B14028B165BD50B006E7650 /* message-icons-png-6611.png */,
 				2BFA9DA510CDF852007972A1 /* MainMenu.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -304,6 +316,10 @@
 				9BCCDEB8165B872700C52B31 /* Weblio.rb in Resources */,
 				9BCCDEB9165B872700C52B31 /* Yomi.rb in Resources */,
 				9BCE15CB165B8981009EF98D /* GyaimController.rb in Resources */,
+				9B140288165BD393006E7650 /* twitter.png in Resources */,
+				9B14028A165BD418006E7650 /* twitter_button.png in Resources */,
+				9B14028C165BD50C006E7650 /* message-icons-png-6611.png in Resources */,
+				9BDD09CF165BD78800039B73 /* Text.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

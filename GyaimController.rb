@@ -41,17 +41,39 @@ class GyaimController < IMKInputController
     
     @@ws = nil
     
-    
+    #テスト文字列だよ
     def tweet(sender)
         
+        #Using clipboard
+        #select = nil
+        #aft = nil
+        #IO.popen('pbpaste') do |clipboard|
+        #    select = clipboard.read
+        #end
+        #type ("\\COMMAND+c")
+        #IO.popen('pbpaste') do |clipboard|
+        #    aft = clipboard.read
+        #end
+        #puts select
+        #puts aft
+        
+        #Using AxTyper
+        #type("\\SHIFT+\\LEFT")
+        #puts @@selectedstr
+        #type("\\SHIFT+\\RIGHT")
+        #type("\\SHIFT+\\RIGHT")
+        #type("\\CTRL+l")
+        #puts @@selectedstr
+        #puts @@selectedstr.class
+        
         serv = NSSharingService.sharingServiceNamed(NSSharingServiceNamePostOnTwitter)
-        serv.performWithItems(["test tweet"])
+        serv.performWithItems([@@selectedstr])
     end
     
     def mail(sender)
         
         serv = NSSharingService.sharingServiceNamed(NSSharingServiceNameComposeEmail)
-        serv.performWithItems(["test tweet"])
+        serv.performWithItems([@@selectedstr])
     end
     
     
@@ -103,6 +125,7 @@ class GyaimController < IMKInputController
         @nthCand = 0
         @@ws.searchmode = 0
         @selectedstr = nil
+        @@selectedstr = nil
         @selectedCand = nil
         
         @hide = false
@@ -157,7 +180,10 @@ class GyaimController < IMKInputController
         if astr then
             s = astr.string
             @selectedstr = s if s != ""
+            @@selectedstr = @selectedstr
         end
+        #puts @@selectedstr
+        #puts @selectedstr
         
         return true if keyCode == kVirtual_JISKanaModeKey || keyCode == kVirtual_JISRomanModeKey
         return true if !eventString
@@ -321,7 +347,7 @@ class GyaimController < IMKInputController
             end
             
             #その他の文字
-            elsif c >= 0x21 && c <= 0x7e && (modifierFlags & NSControlKeyMask) == 0 then
+            elsif c >= 0x21 && c <= 0x7e && (modifierFlags  == 0 || modifierFlags == 131072) then
             fix if @nthCand > 0 || @@ws.searchmode > 0
             #puts modifierFlags
             @inputPat << eventString
@@ -413,6 +439,7 @@ class GyaimController < IMKInputController
                 IO.popen('pbpaste') do |clipboard|
                     clip = clipboard.read
                 end
+                puts "clip:"+clip
                 rep = ""
                 search = @inputPat
                 sub = search.split("->")
@@ -422,7 +449,9 @@ class GyaimController < IMKInputController
                 IO.popen('pbpaste') do |clipboard|
                     rep = clipboard.read
                 end
+                puts "rep:"+rep
                 res = rep.gsub(sub[0],sub[1])
+                puts "res:"+res
                 pbcopy < res
                 type "\\COMMAND+v"
             end
