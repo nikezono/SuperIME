@@ -6,7 +6,6 @@
 # Created by Toshiyuki Masui on 2011/3/15.
 # Copyright 2011 Pitecan Systems. All rights reserved.
 
-require 'Crypt'
 require 'ConnectionDict'
 
 class WordSearch
@@ -68,23 +67,7 @@ class WordSearch
       }
     elsif q == "ds" then # TimeStamp or DateStamp(?)
       @candidates << Time.now.strftime('%Y/%m/%d %H:%M:%S')
-    elsif q.length > 1 && q =~ /^(.*)\?$/ then  # 個人辞書の中から暗号化された単語だけ抽出
-      pat = $1
-      @localdict.each { |entry|
-        yomi = entry[0]
-        word = entry[1]
-        if yomi == '?' then # 暗号化された単語は読みが「?」になってる
-          if !candfound[word] then
-            # decryptしたバイト列が漢字だとうまくいかない...★★修正必要
-            word = Crypt.decrypt(word,pat)
-            if word then
-              @candidates << [word, yomi]
-              candfound[word] = true
-              break if @candidates.length > limit
-            end
-          end
-        end
-      }
+      
     else
       # 普通に検索
       qq = q.gsub(/[\.\{\}\[\]\(\)]/){ '\\' + $& }

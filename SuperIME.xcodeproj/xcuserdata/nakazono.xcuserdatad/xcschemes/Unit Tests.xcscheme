@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4D1A51A110A4FF5D0046A98A"
-               BuildableName = "Compile"
-               BlueprintName = "Compile"
-               ReferencedContainer = "container:Gyaim.xcodeproj">
+               BlueprintIdentifier = "172754BD107597F200D0347B"
+               BuildableName = "Unit Tests"
+               BlueprintName = "Unit Tests"
+               ReferencedContainer = "container:SuperIME.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

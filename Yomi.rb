@@ -1,6 +1,6 @@
 #
 #  Yomi.rb
-#  Gyaim
+#  SuperIME
 #
 #  Created by 中園 翔 on 12/08/26.
 #  Copyright 2012年 Keio Univ. All rights reserved.

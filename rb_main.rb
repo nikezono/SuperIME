@@ -26,7 +26,7 @@ end
 # IMKServerに接続
 #
 identifier = NSBundle.mainBundle.bundleIdentifier
-server = IMKServer.alloc.initWithName("Gyaim_Connection",bundleIdentifier:identifier)
+server = IMKServer.alloc.initWithName("SuperIME_Connection",bundleIdentifier:identifier)
 
 # Starting the Cocoa main loop.
 NSApplicationMain(0, nil)

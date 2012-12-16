@@ -1,5 +1,5 @@
 # AppDelegate.rb
-# Gyaim
+# SuperIME
 #
 # Created by Toshiyuki Masui on 2011/3/15.
 # Copyright 2011 Pitecan Systems. All rights reserved.
