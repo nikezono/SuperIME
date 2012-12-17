@@ -71,7 +71,7 @@ EOF
         
         Net::HTTP.start(host,80){|http|
             res = http.post(cgi,data,header)
-            puts "cgi:#{cgi} data:#{data} header:#{header}"
+            #puts "cgi:#{cgi} data:#{data} header:#{header}"
             url = res.response.body
             IO.popen("pbcopy","r+"){|io|
                 io.write url

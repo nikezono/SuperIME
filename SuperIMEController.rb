@@ -25,8 +25,7 @@ class SuperIMEController < IMKInputController
     attr_accessor :tableview
     attr_accessor :modeSelector
     
-    @@ws = nil
-    @@table = nil
+    @@cs = nil
     @@candTable = nil
     @@circle = NSImage.alloc.initByReferencingFile(NSBundle.mainBundle.pathForResource("circle",ofType:"png"))
     @@selectedMode = 0
@@ -44,14 +43,9 @@ class SuperIMEController < IMKInputController
         @tableview = NSApp.delegate.tableview
         @selector = NSApp.delegate.modeSelector
         
-        # 辞書サーチ
-        dictpath = NSBundle.mainBundle.pathForResource("dict", ofType:"txt")
-        if @@ws.nil? then
-            @@ws = WordSearch.new(dictpath)
-        end
-        
-        if @@table.nil? then
-            @@table = CandTableView.new
+        #サーバと接続
+        if @@cs.nil? then
+            @@cs = ConnectionServer.new
         end
         
         resetState
@@ -67,7 +61,6 @@ class SuperIMEController < IMKInputController
         $selectedstr = nil
         @candidates = []
         @@nthCand = 0
-        @@ws.searchmode = 0
         @@selectedMode = 0
         @selector.selectSegmentWithTag(@@selectedMode)
     end
@@ -145,7 +138,8 @@ class SuperIMEController < IMKInputController
                         @@selectedMode = 0
                         @selector.selectSegmentWithTag(0)
                     end
-                    searchAndShowCands
+                    searchAndShowCands if @inputPat != ""
+                    showCands if @inputPat == ""
                 end
                 handled = true#変換中でないときはハンドルされない→NSTextFieldのBSイベントが来る
             end
@@ -208,11 +202,10 @@ class SuperIMEController < IMKInputController
         #その他の文字
         #いわゆる英数キーと記号
         elsif c >= 0x21 && c <= 0x7e && (modifierFlags  == 0 || modifierFlags == 131072) then
-            fix if @@nthCand > 0 || @@ws.searchmode > 0#タブなどで変換送り中に他の文字列の入力を始めた場合、そこまでを確定する
+            fix if @@nthCand > 0#タブなどで変換送り中に他の文字列の入力を始めた場合、そこまでを確定する
             #puts modifierFlags#debug
             @inputPat << eventString
             searchAndShowCands
-            @@ws.searchmode = 0
             handled = true
         end
         
@@ -238,59 +231,8 @@ class SuperIMEController < IMKInputController
     # 単語を検索して候補の配列を作成するメソッド
     def searchAndShowCands
         
-        #とりあえず、モードごとの条件分岐を行なっているが、
-        #最終的には、サーバへのレスポンスを行い、そのクエリとして@selector.selectedSegmentを渡す。
-        #返り値は一意に [image_url,単語,読み仮名]とする
-        
-        #まずは選択されているモードを調べる
         @@selectedMode = @selector.selectedSegment
-        
-        if @@selectedMode == 1 #類語
-            @candidates = Weblio::search(@candidates[@@nthCand],@inputPat)
-            @@nthCand = 0
-            showCands
-            
-            elsif @@selectedMode == 2 #連想語
-            @candidates = Reflexa::search(@candidates[@@nthCand],@inputPat)
-                @@nthCand = 0
-                showCands
-            elsif @@selectedMode == 3 #英和和英
-            @candidates = Ejje::search(@candidates[@@nthCand],@inputPat)
-                @@nthCand = 0
-                showCands
-            
-            #以下
-        
-        # WordSearch#search で検索して WordSearch#candidates で受け取る
-        # @@ws.searchmode == 0 前方マッチ
-        # @@ws.searchmode == 1 完全マッチ ひらがな/カタカナも候補に加える
-        
-        elsif @@ws.searchmode > 0
-            @@ws.search(@inputPat)
-            @candidates = @@ws.candidates
-            #print @candidates
-            katakana = @inputPat.roma2katakana
-            if katakana != "" then
-                @candidates = delete(@candidates,katakana)
-                @candidates.unshift(katakana)
-            end
-            hiragana = @inputPat.roma2hiragana
-            if hiragana != "" then
-                @candidates = delete(@candidates,hiragana)
-                @candidates.unshift(hiragana)
-            end
-            @candidates.unshift(@inputPat)
-            else
-            @@ws.search(@inputPat)
-            @candidates = @@ws.candidates
-            @candidates.unshift($selectedstr) if $selectedstr && $selectedstr != nil
-            @candidates.unshift(@inputPat)
-            if @candidates.length < 8 then
-                hiragana = @inputPat.roma2hiragana
-                @candidates.push(hiragana)
-            end
-            
-        end
+        @candidates = @@cs.getCandidates(@candidates[@@nthCand],@inputPat,@@selectedMode)        
         @@nthCand = 0
         showCands
     end
@@ -347,7 +289,6 @@ class SuperIMEController < IMKInputController
         return @@circle if aTableColumn.identifier == 'Image' && rowIndex == @@nthCand
         return nil if aTableColumn.identifier == 'Image'
         return @@candTable[rowIndex][0] if aTableColumn.identifier == 'Candidate'
-        return @@candTable[rowIndex][0] if aTableColumn.identifier == 'Description'
         
     end
     
@@ -380,7 +321,6 @@ class SuperIMEController < IMKInputController
     
     # 入力システムがアクティブになると呼ばれる
     def activateServer(sender)
-        @@ws.start
         showWindow
     end
     
@@ -388,7 +328,6 @@ class SuperIMEController < IMKInputController
     def deactivateServer(sender)
         hideWindow
         fix#現在の入力を確定する
-        @@ws.finish
     end
     
 end
