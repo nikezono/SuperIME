@@ -6,32 +6,44 @@
 # Created by Sho Nakazono on 2012/12/10.
 # Copyright 2012 nikezono.net. All rights reserved.
 #
+# IMKServerのコントローラクラス
+# 入力のハンドルを行う
+# 同時に、TableViewとTabViewのdataSourceでもあるので、
+# それらのプロトコルも実装している
 
 framework 'InputMethodKit'
 framework 'Foundation'
 
-require 'WordSearch'
 require 'Romakana'
 require 'Weblio'
-require 'Reflexa'
 require 'Ejje'
 require 'Yomi'
 require 'CandTableView'
-
+require 'ImageItem'
+require 'GyazoButtonController'
 
 class SuperIMEController < IMKInputController
     
     attr_accessor :candwin
     attr_accessor :tableview
     attr_accessor :modeSelector
+    attr_accessor :imageBrowserView
+    attr_accessor :tabview
     
     @@cs = nil
-    @@candTable = nil
+    @@candidates = nil
     @@circle = NSImage.alloc.initByReferencingFile(NSBundle.mainBundle.pathForResource("circle",ofType:"png"))
+    @@gyazoIcon = NSImage.alloc.initByReferencingFile(NSBundle.mainBundle.pathForResource("bigicon",ofType:"png"))
     @@selectedMode = 0
     
+    def awakeFromNib
+        @cache = []
+        @imageBrowserView.animates = true
+        @imageBrowserView.dataSource = self
+        @imageBrowserView.delegate = self
+    end
+    
     def initWithServer(server, delegate:d, client:c)
-        # puts "initWithServer===============@@ws = #{@@ws}"
         # Log.log "initWithServer delegate=#{d}, client="#{c}"
         @client = c   # Lexierraではこれをnilにしてた。何故?
         @@client = @client
@@ -42,6 +54,8 @@ class SuperIMEController < IMKInputController
         @candwin = NSApp.delegate.candwin
         @tableview = NSApp.delegate.tableview
         @selector = NSApp.delegate.modeSelector
+        @imageBrowserView = NSApp.delegate.imageBrowserView
+        @tabview = NSApp.delegate.tabview
         
         #サーバと接続
         if @@cs.nil? then
@@ -59,10 +73,11 @@ class SuperIMEController < IMKInputController
     def resetState
         @inputPat = ""
         $selectedstr = nil
-        @candidates = []
+        @@candidates = []
         @@nthCand = 0
         @@selectedMode = 0
         @selector.selectSegmentWithTag(@@selectedMode)
+        @tabview.selectFirstTabViewItem(self)
     end
     
     def converting
@@ -118,7 +133,6 @@ class SuperIMEController < IMKInputController
         # eventStringの文字コード取得
         s = sprintf("%s",eventString) # NSStringを普通のStringに??
         c = s.each_byte.to_a[0]
-        #puts sprintf("c = 0x%x",c)
         
         #文字コードごとの処理
         #0x08:backspace
@@ -130,6 +144,8 @@ class SuperIMEController < IMKInputController
                     @@nthCand -= 1#変換候補を一つ戻す
                     #ビューを選択された文字列までスクロールする
                     @tableview.scrollRowToVisible(@@nthCand)
+                    @imageBrowserView.scrollIndexToVisible(@@nthCand) if @@selectedMode == 3
+                    #@imageBrowserView.setSelectionIndexes(@@nthCand,false) if @@selectedMode == 3
                     showCands
                 else
                     @inputPat.sub!(/.$/,'')#最初の候補であれば、inputから一文字削る
@@ -137,6 +153,7 @@ class SuperIMEController < IMKInputController
                     if @@selectedMode != 0 then#かな漢字変換に戻る
                         @@selectedMode = 0
                         @selector.selectSegmentWithTag(0)
+                        @tabview.selectFirstTabViewItem(self)
                     end
                     searchAndShowCands if @inputPat != ""
                     showCands if @inputPat == ""
@@ -149,36 +166,62 @@ class SuperIMEController < IMKInputController
         elsif c ==  0x1b then
             if converting then
                 @inputPat = ""#全入力を削除する
+                if @@selectedMode != 0 then#かな漢字変換に戻る
+                    @@selectedMode = 0
+                    @selector.selectSegmentWithTag(0)
+                    @tabview.selectFirstTabViewItem(self)
+                end
                 searchAndShowCands
                 handled = true
             end
             
         #0x9:tab
-        #変換モード切り替え	
+        #変換モード切り替え
+        #シフトと同時押しで変換モード戻る
         elsif c == 0x9 then
             if converting then #いきなり類語、といったことは出来ない
-                @@selectedMode += 1
-                @@selectedMode = 0 if @@selectedMode == 6
+                @@selectedMode += 1 if modifierFlags != 131072
+                @@selectedMode -= 1 if modifierFlags == 131072
+                @@selectedMode = 0 if @@selectedMode == 4
+                
                 @selector.selectSegmentWithTag(@@selectedMode)
                 @tableview.scrollRowToVisible(@@nthCand-1)
+                
                 searchAndShowCands if converting
+
+                @tabview.selectFirstTabViewItem(self) if @@selectedMode == 0
+                
+                if @@selectedMode == 3 then 
+                    @imageBrowserView.reloadData
+                    @tabview.selectLastTabViewItem(self) 
+                    @@nthCand = 0 
+                    @imageBrowserView.scrollIndexToVisible(@@nthCand)
+                    #@imageBrowserView.setSelectionIndexes(0,'yes') if @@selectedMode == 3
+                end
                 handled = true
             end
 
         #0x20:space
-        #候補
+        #候補送り
         #再変換も実装。
             
         elsif c == 0x20 then
             
             if converting then#変換中
-                if @@nthCand < @candidates.length-1 then
+                if @@nthCand < @@candidates.length-1 then
                     @@nthCand += 1
                     showCands
                         
                     #ビューを選択された文字列までスクロールする
                     @tableview.scrollRowToVisible(@@nthCand+8)
+                    
+                    #ビューを選択された画像までスクロールする
+                    if @@selectedMode == 3 then
+                        @imageBrowserView.scrollIndexToVisible(@@nthCand)
+                        #@imageBrowserView.setSelectionIndexes(@@nthCand,false)
+                    end
                 end
+                
                 handled = true
                 
             elsif $selectedstr != nil then#変換中でない、かつ選択範囲にテキストが存在する
@@ -210,7 +253,7 @@ class SuperIMEController < IMKInputController
         end
         
         
-        @@candTable = @candidates
+        @@candidates = @@candidates
         @tableview.reloadData
         
         showWindow
@@ -230,9 +273,8 @@ class SuperIMEController < IMKInputController
     
     # 単語を検索して候補の配列を作成するメソッド
     def searchAndShowCands
-        
         @@selectedMode = @selector.selectedSegment
-        @candidates = @@cs.getCandidates(@candidates[@@nthCand],@inputPat,@@selectedMode)        
+        @@candidates = @@cs.getCandidates(@@candidates[@@nthCand],@inputPat,@@selectedMode)
         @@nthCand = 0
         showCands
     end
@@ -240,10 +282,16 @@ class SuperIMEController < IMKInputController
     
     #入力の確定
     def fix
-        if @candidates.length > @@nthCand then
-            word = wordpart(@candidates[@@nthCand])
-
-            @client.insertText(word,replacementRange:NSMakeRange(NSNotFound, NSNotFound))
+        if @@candidates.length > @@nthCand then
+            word = wordpart(@@candidates[@@nthCand])
+            
+            if @@candidates[@@nthCand][1] == "Gyazo" then
+                gyazo = GyazoController.new
+                gyazo.Gyazo
+            else
+                @client.insertText(word,replacementRange:NSMakeRange(NSNotFound, NSNotFound))
+            end
+            
         end
         resetState
     end
@@ -252,14 +300,14 @@ class SuperIMEController < IMKInputController
         #
         # 選択中の単語をキャレット位置にアンダーライン表示
         #
-        @cands = @candidates.collect { |e|
+        @cands = @@candidates.collect { |e|
             wordpart(e)
         }
         
         word = @cands[@@nthCand]
         
         if word then
-            kTSMHiliteRawText = 2
+            kTSMHiliteRawText = 2	
             attr = self.markForStyle(kTSMHiliteRawText,atRange:NSMakeRange(0,word.length))
             attrstr = NSAttributedString.alloc.initWithString(word,attributes:attr)
             @client.setMarkedText(attrstr,selectionRange:NSMakeRange(word.length,0),replacementRange:NSMakeRange(NSNotFound, NSNotFound))
@@ -277,8 +325,8 @@ class SuperIMEController < IMKInputController
     # タブビューの項目数を決定する
     def numberOfRowsInTableView(aTableView)
         
-        return 0 if  @@candTable.nil?
-        return @@candTable.size
+        return 0 if  @@candidates.nil?
+        return @@candidates.size
     end
     
     #テーブルにデータを入力する
@@ -288,9 +336,28 @@ class SuperIMEController < IMKInputController
         
         return @@circle if aTableColumn.identifier == 'Image' && rowIndex == @@nthCand
         return nil if aTableColumn.identifier == 'Image'
-        return @@candTable[rowIndex][0] if aTableColumn.identifier == 'Candidate'
+        return @@candidates[rowIndex][0] if aTableColumn.identifier == 'Candidate'
         
     end
+    
+    #イメージビュープロトコル
+    def numberOfItemsInImageBrowser(browser)
+        return 0 if @@candidates == nil
+        return @@candidates.length
+        
+    end
+    
+    def imageBrowser(browser, itemAtIndex:index)
+        url = @@candidates[index][0]
+        if @@candidates[index][1] == "Gyazo" then
+            imageItem = ImageItem.new('http://gyazo.com/public/img/top/bigicon.png')
+        else
+            imageItem = ImageItem.new(url)
+        end
+        @cache[index] = imageItem
+        return imageItem
+    end
+    
     
     #
     # キャレットの位置に候補ウィンドウを出す
@@ -304,7 +371,7 @@ class SuperIMEController < IMKInputController
         lineRect = lineRectP[0]
         origin = lineRect.origin
         origin.x -= 0;
-        origin.y -= 200;
+        origin.y -= 210;
         @candwin.setFrameOrigin(origin)
         NSApp.unhide(self)
     end
@@ -313,7 +380,7 @@ class SuperIMEController < IMKInputController
         NSApp.hide(self)
     end
     
-    #外部クラスから文字列を
+    #外部クラスから文字列を入力するためのメソッド
     
     def insert(word)
         @@client.insertText(word,replacementRange:NSMakeRange(NSNotFound, NSNotFound))

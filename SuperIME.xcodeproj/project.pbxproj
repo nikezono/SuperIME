@@ -39,25 +39,21 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		9B1B0950167E222300AF8018 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B1B094F167E222300AF8018 /* circle.png */; };
-		9BCAECA61676DD1600CA9672 /* CandTableView.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BCAECA51676DD1600CA9672 /* CandTableView.rb */; };
+		9B72996F1683391A00CF3044 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B72996E1683391A00CF3044 /* README.md */; };
+		9B8A0681168301520093CF67 /* bigicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B8A0680168301520093CF67 /* bigicon.png */; };
 		9BCCDEB6165B872700C52B31 /* Ejje.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BCCDEB2165B872700C52B31 /* Ejje.rb */; };
-		9BCCDEB7165B872700C52B31 /* Reflexa.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BCCDEB3165B872700C52B31 /* Reflexa.rb */; };
 		9BCCDEB8165B872700C52B31 /* Weblio.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BCCDEB4165B872700C52B31 /* Weblio.rb */; };
 		9BCCDEB9165B872700C52B31 /* Yomi.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BCCDEB5165B872700C52B31 /* Yomi.rb */; };
 		9BCE15CB165B8981009EF98D /* SuperIMEController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BCE15CA165B8981009EF98D /* SuperIMEController.rb */; };
 		9BDB0AA7167E4B48009389B4 /* sharebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDB0AA6167E4B48009389B4 /* sharebutton.png */; };
-		9BDB0AA9167E4D54009389B4 /* Gyazo.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BDB0AA8167E4D54009389B4 /* Gyazo.rb */; };
 		9BDB0AAB167E4FAE009389B4 /* gyazo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDB0AAA167E4FAE009389B4 /* gyazo.png */; };
-		9BDB0AAD167E5084009389B4 /* GyazoButtonController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BDB0AAC167E5084009389B4 /* GyazoButtonController.rb */; };
+		9BDB0AAD167E5084009389B4 /* GyazoController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BDB0AAC167E5084009389B4 /* GyazoController.rb */; };
 		9BDB51891677132400D51172 /* ShareButtonController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BDB51881677132400D51172 /* ShareButtonController.rb */; };
 		9BDB518B167727CC00D51172 /* ConnectionServer.rb in Resources */ = {isa = PBXBuildFile; fileRef = 9BDB518A167727CC00D51172 /* ConnectionServer.rb */; };
-		CE06B23014C59AEB00B8174D /* dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = CE06B22F14C59AEB00B8174D /* dict.txt */; };
 		CE2F8D0B132ED116006FAB89 /* icon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = CE2F8D0A132ED116006FAB89 /* icon.tiff */; };
 		CE4CC6F2132F3F7000AB1DBE /* AppDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = CE4CC6F1132F3F7000AB1DBE /* AppDelegate.rb */; };
 		CE58571D132F91E600C8C83E /* Romakana.rb in Resources */ = {isa = PBXBuildFile; fileRef = CE58571C132F91E600C8C83E /* Romakana.rb */; };
 		CEA7E6FD132E118400EF7235 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA7E6FC132E118400EF7235 /* InputMethodKit.framework */; };
-		CEB9E697132ECDB900F2ABDE /* CandWindow.rb in Resources */ = {isa = PBXBuildFile; fileRef = CEB9E696132ECDB900F2ABDE /* CandWindow.rb */; };
-		CEC9980B1330F0570003090F /* fugodic.txt in Resources */ = {isa = PBXBuildFile; fileRef = CEC9980A1330F0570003090F /* fugodic.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -85,25 +81,21 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* SuperIME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperIME.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B1B094F167E222300AF8018 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
-		9BCAECA51676DD1600CA9672 /* CandTableView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = CandTableView.rb; sourceTree = "<group>"; };
+		9B72996E1683391A00CF3044 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		9B8A0680168301520093CF67 /* bigicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigicon.png; sourceTree = "<group>"; };
 		9BCCDEB2165B872700C52B31 /* Ejje.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Ejje.rb; sourceTree = "<group>"; };
-		9BCCDEB3165B872700C52B31 /* Reflexa.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Reflexa.rb; sourceTree = "<group>"; };
 		9BCCDEB4165B872700C52B31 /* Weblio.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Weblio.rb; sourceTree = "<group>"; };
 		9BCCDEB5165B872700C52B31 /* Yomi.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Yomi.rb; sourceTree = "<group>"; };
 		9BCE15CA165B8981009EF98D /* SuperIMEController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = SuperIMEController.rb; sourceTree = "<group>"; };
 		9BDB0AA6167E4B48009389B4 /* sharebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharebutton.png; sourceTree = "<group>"; };
-		9BDB0AA8167E4D54009389B4 /* Gyazo.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Gyazo.rb; sourceTree = "<group>"; };
 		9BDB0AAA167E4FAE009389B4 /* gyazo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gyazo.png; sourceTree = "<group>"; };
-		9BDB0AAC167E5084009389B4 /* GyazoButtonController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = GyazoButtonController.rb; sourceTree = "<group>"; };
+		9BDB0AAC167E5084009389B4 /* GyazoController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = GyazoController.rb; sourceTree = "<group>"; };
 		9BDB51881677132400D51172 /* ShareButtonController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ShareButtonController.rb; sourceTree = "<group>"; };
 		9BDB518A167727CC00D51172 /* ConnectionServer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ConnectionServer.rb; sourceTree = "<group>"; };
-		CE06B22F14C59AEB00B8174D /* dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dict.txt; path = Resources/dict.txt; sourceTree = "<group>"; };
 		CE2F8D0A132ED116006FAB89 /* icon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = icon.tiff; path = Resources/icon.tiff; sourceTree = "<group>"; };
 		CE4CC6F1132F3F7000AB1DBE /* AppDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = AppDelegate.rb; path = Classes/AppDelegate.rb; sourceTree = "<group>"; };
 		CE58571C132F91E600C8C83E /* Romakana.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = Romakana.rb; path = Romakana/Romakana.rb; sourceTree = "<group>"; };
 		CEA7E6FC132E118400EF7235 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = System/Library/Frameworks/InputMethodKit.framework; sourceTree = SDKROOT; };
-		CEB9E696132ECDB900F2ABDE /* CandWindow.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = CandWindow.rb; path = Classes/CandWindow.rb; sourceTree = "<group>"; };
-		CEC9980A1330F0570003090F /* fugodic.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fugodic.txt; path = Resources/fugodic.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,18 +116,14 @@
 			isa = PBXGroup;
 			children = (
 				9BDB51881677132400D51172 /* ShareButtonController.rb */,
-				9BDB0AAC167E5084009389B4 /* GyazoButtonController.rb */,
-				CEB9E696132ECDB900F2ABDE /* CandWindow.rb */,
+				9BDB0AAC167E5084009389B4 /* GyazoController.rb */,
 				9BCCDEB2165B872700C52B31 /* Ejje.rb */,
-				9BCCDEB3165B872700C52B31 /* Reflexa.rb */,
 				9BCE15CA165B8981009EF98D /* SuperIMEController.rb */,
 				9BDB518A167727CC00D51172 /* ConnectionServer.rb */,
 				9BCCDEB4165B872700C52B31 /* Weblio.rb */,
 				9BCCDEB5165B872700C52B31 /* Yomi.rb */,
 				CE4CC6F1132F3F7000AB1DBE /* AppDelegate.rb */,
 				CE58571C132F91E600C8C83E /* Romakana.rb */,
-				9BDB0AA8167E4D54009389B4 /* Gyazo.rb */,
-				9BCAECA51676DD1600CA9672 /* CandTableView.rb */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -192,13 +180,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9B72996E1683391A00CF3044 /* README.md */,
 				9B1B094F167E222300AF8018 /* circle.png */,
 				9BDB0AAA167E4FAE009389B4 /* gyazo.png */,
 				9BDB0AA6167E4B48009389B4 /* sharebutton.png */,
-				CEC9980A1330F0570003090F /* fugodic.txt */,
-				CE06B22F14C59AEB00B8174D /* dict.txt */,
 				CE2F8D0A132ED116006FAB89 /* icon.tiff */,
 				2BFA9DA510CDF852007972A1 /* MainMenu.xib */,
+				9B8A0680168301520093CF67 /* bigicon.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 			);
@@ -273,25 +261,21 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				4DE339F70D74FCDD00ADB6EE /* rb_main.rb in Resources */,
 				2BFA9DA710CDF852007972A1 /* MainMenu.xib in Resources */,
-				CEB9E697132ECDB900F2ABDE /* CandWindow.rb in Resources */,
 				CE2F8D0B132ED116006FAB89 /* icon.tiff in Resources */,
 				CE4CC6F2132F3F7000AB1DBE /* AppDelegate.rb in Resources */,
 				CE58571D132F91E600C8C83E /* Romakana.rb in Resources */,
-				CEC9980B1330F0570003090F /* fugodic.txt in Resources */,
-				CE06B23014C59AEB00B8174D /* dict.txt in Resources */,
 				9BCCDEB6165B872700C52B31 /* Ejje.rb in Resources */,
-				9BCCDEB7165B872700C52B31 /* Reflexa.rb in Resources */,
 				9BCCDEB8165B872700C52B31 /* Weblio.rb in Resources */,
 				9BCCDEB9165B872700C52B31 /* Yomi.rb in Resources */,
 				9BCE15CB165B8981009EF98D /* SuperIMEController.rb in Resources */,
-				9BCAECA61676DD1600CA9672 /* CandTableView.rb in Resources */,
 				9BDB51891677132400D51172 /* ShareButtonController.rb in Resources */,
 				9BDB518B167727CC00D51172 /* ConnectionServer.rb in Resources */,
 				9B1B0950167E222300AF8018 /* circle.png in Resources */,
 				9BDB0AA7167E4B48009389B4 /* sharebutton.png in Resources */,
-				9BDB0AA9167E4D54009389B4 /* Gyazo.rb in Resources */,
 				9BDB0AAB167E4FAE009389B4 /* gyazo.png in Resources */,
-				9BDB0AAD167E5084009389B4 /* GyazoButtonController.rb in Resources */,
+				9BDB0AAD167E5084009389B4 /* GyazoController.rb in Resources */,
+				9B8A0681168301520093CF67 /* bigicon.png in Resources */,
+				9B72996F1683391A00CF3044 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

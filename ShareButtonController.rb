@@ -3,7 +3,12 @@
 #  SuperIME
 #
 #  Created by 中園 翔 on 2012/12/11.
-#  Copyright 2012年 __MyCompanyName__. All rights reserved.
+#  Copyright 2012年 nikezono.net. All rights reserved.
+#
+#  共有ボタンのコントローラ
+#  NSSharingServiceを呼び出す事が出来る
+#  選択範囲の値ではなく、現在入力中の文字列を渡せるようにしても良い
+#  そもそもオミットするかも？
 #
 
 class ShareButtonController < NSButton

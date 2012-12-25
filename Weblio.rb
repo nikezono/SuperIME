@@ -1,6 +1,7 @@
-##Weblio.rb
-##中園翔
-##
+##  Weblio.rb
+##  nikezono.net
+##  汎用スクレイパー
+##  いずれサーバサイド実装
 
 require 'net/http'
 require 'nkf'

@@ -5,9 +5,9 @@
 #  Created by 中園 翔 on 12/08/21.
 #  Copyright 2012年 Keio Univ. All rights reserved.
 #
-
-#spaceALCから和英・英和翻訳の結果を持ってくる。
-#EnglishJapanese and JapaneseEnglish.(ejje)
+#　スペースアルクから和英・英和翻訳の結果を持ってくる。
+#　じきサーバサイドに統合。
+#　EnglishJapanese and JapaneseEnglish.(ejje)
 
 require 'net/http'
 require 'nkf'

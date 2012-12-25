@@ -3,38 +3,92 @@
 #  SuperIME
 #
 #  Created by 中園 翔 on 2012/12/11.
-#  Copyright 2012年 __MyCompanyName__. All rights reserved.
+#  Copyright 2012年 nikezono.net. All rights reserved.
 #
+#  与えられた文字列とモードごとに、サーバと接続し結果を取得する
+#  mode
+#  0:かな漢字変換
+#  1:類語変換
+#  2:英語変換
+#  3:tiqav
+#
+#  実装目標
+#  1.クライアントサイドで実メモリにキャッシュする(ruby-trieを用いる)
+#  2.WebSocketクライアントとして実装する（em-ruby-clientを用いる）
+#  3.単語の配列を[読み]のみの配列にする?
+#  配列とハッシュ、trieそれぞれの速度についてテストする必要がある。
 
 require 'net/http'
 require 'json'
 require 'Romakana'
+require 'Weblio'
 
 class ConnectionServer
 
     def getCandidates(cand,input,mode)
 
+    
         candidates = []
+        hiragana = input.roma2hiragana
+
         #分岐
         if mode == 0 then
-            hiragana = input.roma2hiragana
             #ひらがなに変換出来ない場合エラーになるので呼ばない
             if hiragana != "" then
                 Net::HTTP.start('localhost', 2342) {|http|
-                    response = http.get("/?mode=0&text=#{hiragana}")
+                    response = http.get("/?mode=0&hira=#{hiragana}")
                     s = response.body.to_s
                     s = JSON.parse(s)
                     s.each {|text|
-                        candidates << [text,@inputPat]
+                        candidates.push [text,input]
                     }
                 }
             end
-            candidates.unshift([hiragana,hiragana])
-            candidates.unshift([input,input])
+            
+            #記号
+            #ここをもう少しロジカルに書きたい
+            #サーバサイドで実装するべき
+            if input == "," || input == "." || input ==  "/" || input == "~" || input == "!" || input == "batu" || input == "maru" || input == "sankaku" then
+
+                candidates.unshift(["、",input]) if input == ","
+                candidates.unshift(["。",input]) if input == "."
+                candidates.unshift(["・",input]) if input == "/"
+                candidates.unshift(["〜",input]) if input == "~"
+                candidates.unshift(["！",input]) if input == "!"
+                candidates.unshift(["☓",input]) if input == "batu"
+                candidates.unshift(["○",input]) if input == "maru"
+                candidates.unshift(["△",input]) if input == "sankaku"
+            end
+            candidates.unshift([input,input])#英語追加
+                      
+            return candidates
+            
+        #類語
+        elsif mode == 1 then
+            candidates = Weblio::search(cand,input)
+            return candidates
+            
+        #英語
+        elsif mode == 2 then
+            candidates = Ejje::search(cand,input)
             return candidates
         
-        elsif mode == 1 then
-            return []
+        #画像
+        #google Custom SearchのAPIはクエリ制限が厳しすぎる。
+        #bingのAPIはBasic認証をかけられてしまう。
+        #yahooは2013年3月から有料化する。
+            
+        elsif mode == 3 then
+            Net::HTTP.start('localhost', 2342) {|http|
+                response = http.get("/?mode=3&hira=#{hiragana}")
+                s = response.body.to_s
+                s = JSON.parse(s)
+                s.each {|text|
+                    candidates.push [text,input]
+                }
+            }
+            candidates.unshift ["スクリーンショットの撮影","Gyazo"]
+            return candidates
         end
     end
 end

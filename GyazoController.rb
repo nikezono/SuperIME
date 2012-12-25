@@ -1,15 +1,19 @@
 #
-#  GyazoButtonController.rb
+#  GyazoController.rb
 #  SuperIME
 #
 #  Created by 中園 翔 on 2012/12/17.
-#  Copyright 2012年 __MyCompanyName__. All rights reserved.
+#  Copyright 2012年 nikezono.net. All rights reserved.
 #
+#  Gyazoからブラウザをopenする処理を省いたもの
+#  URLをテキストボックスにinsertする処理が追加されている
+#  http://gyazo.com
 
+require 'SuperIMEController'
 
-class GyazoButtonController
+class GyazoController
 
-    def pushedButton(sender)
+    def Gyazo
         
         # get id
         user = IO.popen("whoami", "r+").gets.chomp
