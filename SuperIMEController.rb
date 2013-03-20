@@ -87,7 +87,7 @@ class SuperIMEController < IMKInputController
     #
     # キー入力などのイベントをすべて取得、必要なあらゆる処理を行なう
     # バインディングをしなければキーイベントのままアプリケーションごとに処理される
-    # つまり、NSTextFieldにカーソルを当てている場合、CommandをスルーしてあるのでCommand+Aなどの機能は据え置きとなる
+    # つまり、NSTextFieldにカーソルを当てている場合、CommandをスルーしてあるのでCommand+Aなどの機能はそのまま使える
     #
     def handleEvent(event, client:sender)
         
