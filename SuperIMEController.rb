@@ -72,7 +72,7 @@ class SuperIMEController < IMKInputController
     #入力が確定されるごとにリセットされる
     def resetState
         @inputPat = ""
-        $selectedstr = nil
+        #$selectedstr = nil
         @@candidates = []
         @@nthCand = 0
         @@selectedMode = 0
@@ -161,7 +161,6 @@ class SuperIMEController < IMKInputController
                 handled = true#変換中でないときはハンドルされない→NSTextFieldのBSイベントが来る
             end
             
-            
         #0x1b:esc 全削除
         elsif c ==  0x1b then
             if converting then
@@ -238,7 +237,7 @@ class SuperIMEController < IMKInputController
         elsif c == 0x0a || c == 0x0d then
             if converting then
                 fix
-            
+                $selectedstr = nil
                 handled = true
             end
             

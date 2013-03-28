@@ -13,8 +13,8 @@
 #  3:tiqav
 #
 #  実装目標
-#  1.クライアントサイドで実メモリにキャッシュする(ruby-trieを用いる)
-#  2.WebSocketクライアントとして実装する（em-ruby-clientを用いる）
+#  1.サーバ&クライアントサイド両方でキャッシュする(redis&levelDB)
+#  2.httpではなくWebSocketクライアントとして実装する（em-ruby-clientを用いる）
 #  3.単語の配列を[読み]のみの配列にする?
 #  配列とハッシュ、trieそれぞれの速度についてテストする必要がある。
 
@@ -33,22 +33,31 @@ class ConnectionServer
 
         #分岐
         if mode == 0 then
-            #ひらがなに変換出来ない場合エラーになるので呼ばない
-            if hiragana != "" then
+            
+          #ひらがなに変換出来ない場合エラーになるので呼ばない
+          if hiragana != "" then
+            #LevelDBに問い合わせて、存在する場合はそれ使う
+            if $kanaDB.includes? hiragana then
+               s = $kanaDB.get(hiragana)
+                  
+            else
                 Net::HTTP.start('localhost', 2342) {|http|
-                    response = http.get("/?mode=0&hira=#{hiragana}")
-                    s = response.body.to_s
-                    s = JSON.parse(s)
-                    s.each {|text|
-                        candidates.push [text,input]
-                    }
+                response = http.get("/?mode=0&hira=#{hiragana}")
+                s = response.body.to_s
+                $kanaDB.put(hiragana,s)
                 }
             end
+            s = JSON.parse(s)
+            s.each {|text|
+              candidates.push [text,input]
+            }
+          end
+
             
-            #記号
-            #ここをもう少しロジカルに書きたい
-            #サーバサイドで実装するべき
-            if input == "," || input == "." || input ==  "/" || input == "~" || input == "!" || input == "batu" || input == "maru" || input == "sankaku" then
+              #記号
+              #ここをもう少しロジカルに書きたい
+              #サーバサイドで実装するべき
+              if input == "," || input == "." || input ==  "/" || input == "~" || input == "!" || input == "batu" || input == "maru" || input == "sankaku" then
 
                 candidates.unshift(["、",input]) if input == ","
                 candidates.unshift(["。",input]) if input == "."
@@ -58,9 +67,10 @@ class ConnectionServer
                 candidates.unshift(["☓",input]) if input == "batu"
                 candidates.unshift(["○",input]) if input == "maru"
                 candidates.unshift(["△",input]) if input == "sankaku"
-            end
-            candidates.unshift([input,input])#英語追加
-                      
+              end
+              candidates.unshift([$selectedstr,input]) unless $selectedstr.nil? #copy&paste
+              candidates.unshift([input,input]) #英語追加
+              
             return candidates
             
         #類語

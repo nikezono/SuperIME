@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SuperIMEController.rb"
-         timestampString = "377758057.10347"
+         timestampString = "385462202.65792"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "312"
-         endingLineNumber = "312"
+         startingLineNumber = "311"
+         endingLineNumber = "311"
          landmarkName = "showCands"
          landmarkType = "7">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SuperIMEController.rb"
-         timestampString = "377758057.10347"
+         timestampString = "385462202.65792"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "226"
-         endingLineNumber = "226"
+         startingLineNumber = "225"
+         endingLineNumber = "225"
          landmarkName = "handleEvent"
          landmarkType = "7">
       </FileBreakpoint>
