@@ -16,6 +16,8 @@ class AppDelegate
   def awakeFromNib()
       #LevelDBと接続する。
       $kanaDB = LevelDB::DB.new NSBundle.mainBundle.pathForResource("kanakanji",ofType:"ldb")
+      $superDB = LevelDB::DB.new NSBundle.mainBundle.pathForResource("kanakanji",ofType:"ldb")
+
   end
     
 end

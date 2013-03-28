@@ -3,5 +3,8 @@
 build
 tmp
 .DS_Store
+*.swp
+Resources/kanakanji.ldb
+Resources/super.ldb
 masui.mode1v3
 masui.pbxuser
