@@ -14,8 +14,8 @@ class AppDelegate
   attr_accessor :inputcontroller
     
   def awakeFromNib()
-    #LevelDBと接続する。
-    $kanaDB = LevelDB::DB.new File.expand_path 'kanakanji.ldb', File.dirname(__FILE__)
+      #LevelDBと接続する。
+      $kanaDB = LevelDB::DB.new NSBundle.mainBundle.pathForResource("kanakanji",ofType:"ldb")
   end
     
   

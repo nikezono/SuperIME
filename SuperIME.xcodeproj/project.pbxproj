@@ -38,6 +38,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		9B19CEE51704916200008633 /* kanakanji.ldb in Resources */ = {isa = PBXBuildFile; fileRef = 9B19CEE41704916200008633 /* kanakanji.ldb */; };
 		9B1B0950167E222300AF8018 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B1B094F167E222300AF8018 /* circle.png */; };
 		9B72996F1683391A00CF3044 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B72996E1683391A00CF3044 /* README.md */; };
 		9B8A0681168301520093CF67 /* bigicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B8A0680168301520093CF67 /* bigicon.png */; };
@@ -80,6 +81,7 @@
 		4DE3BE130D8651D900ECA448 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = /Library/Frameworks/MacRuby.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* SuperIME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperIME.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B19CEE41704916200008633 /* kanakanji.ldb */ = {isa = PBXFileReference; lastKnownFileType = folder; name = kanakanji.ldb; path = Resources/kanakanji.ldb; sourceTree = "<group>"; };
 		9B1B094F167E222300AF8018 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		9B72996E1683391A00CF3044 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		9B8A0680168301520093CF67 /* bigicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigicon.png; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			children = (
 				9B72996E1683391A00CF3044 /* README.md */,
 				9B1B094F167E222300AF8018 /* circle.png */,
+				9B19CEE41704916200008633 /* kanakanji.ldb */,
 				9BDB0AAA167E4FAE009389B4 /* gyazo.png */,
 				9BDB0AA6167E4B48009389B4 /* sharebutton.png */,
 				CE2F8D0A132ED116006FAB89 /* icon.tiff */,
@@ -276,6 +279,7 @@
 				9BDB0AAD167E5084009389B4 /* GyazoController.rb in Resources */,
 				9B8A0681168301520093CF67 /* bigicon.png in Resources */,
 				9B72996F1683391A00CF3044 /* README.md in Resources */,
+				9B19CEE51704916200008633 /* kanakanji.ldb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

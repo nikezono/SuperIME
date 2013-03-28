@@ -38,13 +38,15 @@ class ConnectionServer
           if hiragana != "" then
             #LevelDBに問い合わせて、存在する場合はそれ使う
             if $kanaDB.includes? hiragana then
-               s = $kanaDB.get(hiragana)
+                s = $kanaDB.get(hiragana)
+                #puts "get leveldb: #{s}"
                   
             else
                 Net::HTTP.start('localhost', 2342) {|http|
-                response = http.get("/?mode=0&hira=#{hiragana}")
-                s = response.body.to_s
-                $kanaDB.put(hiragana,s)
+                    response = http.get("/?mode=0&hira=#{hiragana}")
+                    s = response.body.to_s
+                    #puts "insert db :#{$kanaDB.put(hiragana,s)}"
+                    $kanaDB.put(hiragana,s)
                 }
             end
             s = JSON.parse(s)
@@ -53,7 +55,7 @@ class ConnectionServer
             }
           end
 
-            
+        
               #記号
               #ここをもう少しロジカルに書きたい
               #サーバサイドで実装するべき
