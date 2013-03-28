@@ -18,5 +18,4 @@ class AppDelegate
       $kanaDB = LevelDB::DB.new NSBundle.mainBundle.pathForResource("kanakanji",ofType:"ldb")
   end
     
-  
 end
