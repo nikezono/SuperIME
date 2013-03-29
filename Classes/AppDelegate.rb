@@ -7,6 +7,7 @@
 require 'rubygems'
 require 'leveldb'
 
+
 class AppDelegate
   attr_accessor :candwin
   attr_accessor :candview
@@ -16,8 +17,9 @@ class AppDelegate
   def awakeFromNib()
       #LevelDBと接続する。
       $kanaDB = LevelDB::DB.new NSBundle.mainBundle.pathForResource("kanakanji",ofType:"ldb")
-      $superDB = LevelDB::DB.new NSBundle.mainBundle.pathForResource("kanakanji",ofType:"ldb")
+      $superDB = LevelDB::DB.new NSBundle.mainBundle.pathForResource("super",ofType:"ldb")
 
+    
   end
     
 end

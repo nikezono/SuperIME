@@ -14,9 +14,9 @@
 #
 #  実装目標
 #  1.サーバ&クライアントサイド両方でキャッシュする(redis&levelDB)
-#  2.httpではなくWebSocketクライアントとして実装する（em-ruby-clientを用いる）
+#  2.httpではなくWebSocketクライアントとして実装する
 #  3.単語の配列を[読み]のみの配列にする?
-#  配列とハッシュ、trieそれぞれの速度についてテストする必要がある。
+#  trie使うとか?
 
 require 'net/http'
 require 'json'
@@ -40,7 +40,7 @@ class ConnectionServer
             if $kanaDB.includes? hiragana then
                 s = $kanaDB.get(hiragana)
                 #puts "get leveldb: #{s}"
-                  
+                
             else
                 Net::HTTP.start('localhost', 2342) {|http|
                     response = http.get("/?mode=0&hira=#{hiragana}")
@@ -91,14 +91,24 @@ class ConnectionServer
         #yahooは2013年3月から有料化する。
             
         elsif mode == 3 then
-            Net::HTTP.start('localhost', 2342) {|http|
-                response = http.get("/?mode=3&hira=#{hiragana}")
-                s = response.body.to_s
+            #LevelDBに問い合わせて、存在する場合はそれ使う
+            if $superDB.includes? hiragana then
+                s = $superDB.get(hiragana)
+                #puts "get leveldb: #{s}"
+                
+            else
+
+                Net::HTTP.start('localhost', 2342) {|http|
+                    response = http.get("/?mode=3&hira=#{hiragana}")
+                    s = response.body.to_s
+                    $superDB.put(hiragana,s)
+                }
+            end
                 s = JSON.parse(s)
                 s.each {|text|
                     candidates.push [text,input]
                 }
-            }
+            
             candidates.unshift ["スクリーンショットの撮影","Gyazo"]
             return candidates
         end
