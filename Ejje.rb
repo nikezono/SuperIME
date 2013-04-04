@@ -15,6 +15,7 @@ require 'uri'
  
 require 'rubygems'
 require 'moji'
+
 class Ejje
     
     def Ejje::search(w,inputpat,limit=10)

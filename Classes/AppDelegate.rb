@@ -6,7 +6,8 @@
 
 require 'rubygems'
 require 'leveldb'
-
+#require 'eventmachine'
+#require 'em-websocket-client'
 
 class AppDelegate
   attr_accessor :candwin
@@ -17,9 +18,11 @@ class AppDelegate
   def awakeFromNib()
       #LevelDBと接続する。
       $kanaDB = LevelDB::DB.new NSBundle.mainBundle.pathForResource("kanakanji",ofType:"ldb")
+      #debug $kanaDB.delete "あああ"
       $superDB = LevelDB::DB.new NSBundle.mainBundle.pathForResource("super",ofType:"ldb")
 
     
   end
     
 end
+

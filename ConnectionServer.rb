@@ -22,6 +22,7 @@ require 'net/http'
 require 'json'
 require 'Romakana'
 require 'Weblio'
+require 'date'
 
 class ConnectionServer
 
@@ -59,7 +60,7 @@ class ConnectionServer
               #記号
               #ここをもう少しロジカルに書きたい
               #サーバサイドで実装するべき
-              if input == "," || input == "." || input ==  "/" || input == "~" || input == "!" || input == "batu" || input == "maru" || input == "sankaku" then
+              if input == "," || input == "." || input ==  "/" || input == "~" || input == "!" || input == "batu" || input == "maru" || input == "sankaku" || input == "[" || input == "]" || input == "time" then
 
                 candidates.unshift(["、",input]) if input == ","
                 candidates.unshift(["。",input]) if input == "."
@@ -69,8 +70,18 @@ class ConnectionServer
                 candidates.unshift(["☓",input]) if input == "batu"
                 candidates.unshift(["○",input]) if input == "maru"
                 candidates.unshift(["△",input]) if input == "sankaku"
+                candidates.unshift(["「",input]) if input == "["
+                candidates.unshift(["」",input]) if input == "]"
+                if input == "time" then
+                    date = Time.now
+                    wdays = ["日", "月", "火", "水", "木", "金", "土"]
+                    candidates.unshift(["#{wdays[date.wday]}曜日"])
+                    candidates.unshift(["#{date.hour}時#{date.min}分"])
+                    candidates.unshift(["#{date.month}月#{date.day}日"])
+                    candidates.unshift(["#{date.month}月#{date.day}日#{date.hour}時#{date.min}分"])
+                    candidates.unshift(["#{date}"])
+                end
               end
-              candidates.unshift([$selectedstr,input]) unless $selectedstr.nil? #copy&paste
               candidates.unshift([input,input]) #英語追加
               
             return candidates

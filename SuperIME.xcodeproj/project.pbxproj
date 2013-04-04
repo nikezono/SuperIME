@@ -39,6 +39,11 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		9B19CEE51704916200008633 /* kanakanji.ldb in Resources */ = {isa = PBXBuildFile; fileRef = 9B19CEE41704916200008633 /* kanakanji.ldb */; };
+		9B1AFAAA17058C19004D7AAA /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1AFAA917058C19004D7AAA /* libicucore.dylib */; };
+		9B1AFAAC17058C23004D7AAA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1AFAAB17058C23004D7AAA /* CFNetwork.framework */; };
+		9B1AFAAE17058C2A004D7AAA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1AFAAD17058C2A004D7AAA /* Security.framework */; };
+		9B1AFAB017058C37004D7AAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1AFAAF17058C37004D7AAA /* Foundation.framework */; };
+		9B1AFAB217058C81004D7AAA /* SocketRocket in Resources */ = {isa = PBXBuildFile; fileRef = 9B1AFAB117058C81004D7AAA /* SocketRocket */; };
 		9B1B0950167E222300AF8018 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B1B094F167E222300AF8018 /* circle.png */; };
 		9B3CBAE31704A32F00C41203 /* super.ldb in Resources */ = {isa = PBXBuildFile; fileRef = 9B3CBAE21704A32E00C41203 /* super.ldb */; };
 		9B72996F1683391A00CF3044 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B72996E1683391A00CF3044 /* README.md */; };
@@ -83,6 +88,11 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* SuperIME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperIME.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B19CEE41704916200008633 /* kanakanji.ldb */ = {isa = PBXFileReference; lastKnownFileType = folder; name = kanakanji.ldb; path = Resources/kanakanji.ldb; sourceTree = "<group>"; };
+		9B1AFAA917058C19004D7AAA /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		9B1AFAAB17058C23004D7AAA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9B1AFAAD17058C2A004D7AAA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9B1AFAAF17058C37004D7AAA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9B1AFAB117058C81004D7AAA /* SocketRocket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SocketRocket; sourceTree = "<group>"; };
 		9B1B094F167E222300AF8018 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		9B3CBAE21704A32E00C41203 /* super.ldb */ = {isa = PBXFileReference; lastKnownFileType = folder; name = super.ldb; path = Resources/super.ldb; sourceTree = "<group>"; };
 		9B72996E1683391A00CF3044 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -107,6 +117,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B1AFAB017058C37004D7AAA /* Foundation.framework in Frameworks */,
+				9B1AFAAE17058C2A004D7AAA /* Security.framework in Frameworks */,
+				9B1AFAAC17058C23004D7AAA /* CFNetwork.framework in Frameworks */,
+				9B1AFAAA17058C19004D7AAA /* libicucore.dylib in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */,
 				CEA7E6FD132E118400EF7235 /* InputMethodKit.framework in Frameworks */,
@@ -135,6 +149,10 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9B1AFAB117058C81004D7AAA /* SocketRocket */,
+				9B1AFAAF17058C37004D7AAA /* Foundation.framework */,
+				9B1AFAAD17058C2A004D7AAA /* Security.framework */,
+				9B1AFAAB17058C23004D7AAA /* CFNetwork.framework */,
 				4DE3BE130D8651D900ECA448 /* MacRuby.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				CEA7E6FC132E118400EF7235 /* InputMethodKit.framework */,
@@ -163,6 +181,7 @@
 		29B97314FDCFA39411CA2CEA /* Gyaim */ = {
 			isa = PBXGroup;
 			children = (
+				9B1AFAA917058C19004D7AAA /* libicucore.dylib */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -284,6 +303,7 @@
 				9B72996F1683391A00CF3044 /* README.md in Resources */,
 				9B19CEE51704916200008633 /* kanakanji.ldb in Resources */,
 				9B3CBAE31704A32F00C41203 /* super.ldb in Resources */,
+				9B1AFAB217058C81004D7AAA /* SocketRocket in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

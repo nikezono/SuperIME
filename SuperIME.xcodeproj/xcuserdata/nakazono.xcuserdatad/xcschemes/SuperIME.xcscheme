@@ -60,12 +60,12 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "GEM_PATH"
-            value = "/Users/nakazono/.rvm/gems/macruby-0.12"
+            value = "/Library/Ruby/Gems/MacRuby/0.12"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "GEM_HOME"
-            value = "/Users/nakazono/.rvm/gems/macruby-0.12"
+            value = "/Library/Ruby/Gems/MacRuby/0.12"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
