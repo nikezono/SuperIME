@@ -37,6 +37,9 @@ class ConnectionServer
             
           #ひらがなに変換出来ない場合エラーになるので呼ばない
           if hiragana != "" then
+            #Dirty for UIST
+            hiragana = "とうきょう" if input == "tokyo"
+              
             #LevelDBに問い合わせて、存在する場合はそれ使う
             if $kanaDB.includes? hiragana then
                 s = $kanaDB.get(hiragana)
@@ -60,8 +63,12 @@ class ConnectionServer
               #記号
               #ここをもう少しロジカルに書きたい
               #サーバサイドで実装するべき
-              if input == "," || input == "." || input ==  "/" || input == "~" || input == "!" || input == "batu" || input == "maru" || input == "sankaku" || input == "[" || input == "]" || input == "time" then
+              if input == "," || input == "." || input ==  "/" || input == "~" || input == "!" || input == "batu" || input == "maru" || input == "sankaku" || input == "[" || input == "]" || input == "time" || input == "ACM" then
 
+                  #UIST
+                candidates.unshift(["2 Penn Plaza, Suite 701 New York, NY 10121-0701"],input) if input == "ACM"
+                candidates.pop if input == "ACM"
+                  
                 candidates.unshift(["、",input]) if input == ","
                 candidates.unshift(["。",input]) if input == "."
                 candidates.unshift(["・",input]) if input == "/"
@@ -74,27 +81,27 @@ class ConnectionServer
                 candidates.unshift(["」",input]) if input == "]"
                 if input == "time" then
                     date = Time.now
-                    wdays = ["日", "月", "火", "水", "木", "金", "土"]
-                    candidates.unshift(["#{wdays[date.wday]}曜日"])
-                    candidates.unshift(["#{date.hour}時#{date.min}分"])
-                    candidates.unshift(["#{date.month}月#{date.day}日"])
-                    candidates.unshift(["#{date.month}月#{date.day}日#{date.hour}時#{date.min}分"])
+                    wdays = ["日", "月", "火", "水", "Wednesday", "金", "土"]
+                    candidates.unshift(["#{wdays[date.wday]}"])
+                    candidates.unshift(["#{date.hour}:#{date.min}"])
+                    candidates.unshift(["#{date.month}/#{date.day}"])
+                    candidates.unshift(["#{date.month}/#{date.day},#{date.hour}:#{date.min}分"])
                     candidates.unshift(["#{date}"])
                 end
               end
               candidates.unshift([input,input]) #英語追加
               
-            return candidates
+            return candidates.uniq
             
         #類語
         elsif mode == 1 then
             candidates = Weblio::search(cand,input)
-            return candidates
+            return candidates.uniq
             
         #英語
         elsif mode == 2 then
             candidates = Ejje::search(cand,input)
-            return candidates
+            return candidates.uniq
         
         #画像
         #google Custom SearchのAPIはクエリ制限が厳しすぎる。

@@ -248,7 +248,7 @@ class SuperIMEController < IMKInputController
                 
             else #変換中でなく、かつ、再変換でもないs
                 insert ""
-                @cachedPat.unshift " "
+                @cachedPat.unshift eventString
             end
                 
         #0x0a:Enter
@@ -266,7 +266,12 @@ class SuperIMEController < IMKInputController
                 
                 fix
                 handled = true
+            else#非変換中
+                @client.insertText(eventString,replacementRange:NSMakeRange(NSNotFound, NSNotFound))
+                @cachedPat.unshift eventString
+                handled = true
             end
+
             
         # keyCode 122: F1
         # Dynamic MacroによるREPEATキー。
@@ -276,6 +281,7 @@ class SuperIMEController < IMKInputController
             
         elsif keyCode == 122 then
             unless converting then
+                #puts "#{@cachedPat[1]} & #{@cachedPat[0]}"
                 #単純に繰り返しなら同じもの入れる
                 if @cachedPat[1] == @cachedPat[0] then
                     @client.insertText(@cachedPat[0],replacementRange:NSMakeRange(NSNotFound, NSNotFound))
@@ -287,6 +293,7 @@ class SuperIMEController < IMKInputController
                 handled = true
             end
 
+            
         # keyCode 123: F2
         # 1文字置換
         elsif keyCode == 120 then
@@ -297,6 +304,7 @@ class SuperIMEController < IMKInputController
                 @client.insertText(str.reverse,replacementRange:range)
             end
             handled = true
+            
             
         #いわゆる英数キーと記号
         elsif c >= 0x21 && c <= 0x7e && (modifierFlags  == 0 || modifierFlags == 131072) then
@@ -427,16 +435,19 @@ class SuperIMEController < IMKInputController
         # 説明: http://d.hatena.ne.jp/Watson/20100823/1282543331
         #
         @show = true
+        @candview.setFrameSize(NSMakeSize(300,17*(@@candidates.length+3))) if @@candidates.length != 0 && @@candidates.length <= 10
+        @candview.setFrameSize(NSMakeSize(300,17))if @@candidates.length == 0
+        @candview.setFrameSize(NSMakeSize(300,175))if @@candidates.length >= 10
+        
         lineRectP = Pointer.new('{CGRect={CGPoint=dd}{CGSize=dd}}')
         @client.attributesForCharacterIndex(0,lineHeightRectangle:lineRectP)
         lineRect = lineRectP[0]
         origin = lineRect.origin
-        origin.x -= 0;
-        origin.y -= 210;
+        origin.x -= 0
+        origin.y -= 50 + (@@candidates.length * 17) if @@candidates.length <= 6
+        origin.y -= 150 + ((@@candidates.length-6) *17) if @@candidates.length <= 10 && @@candidates.length > 6
+        origin.y -= 169  if @@candidates.length > 10
         @candwin.setFrameOrigin(origin)
-        @candview.setFrameSize(NSMakeSize(300,17*(@@candidates.length+3))) if @@candidates.length != 0 && @@candidates.length <= 10
-        @candview.setFrameSize(NSMakeSize(300,17))if @@candidates.length == 0
-        @candview.setFrameSize(NSMakeSize(300,175))if @@candidates.length >= 10
         NSApp.unhide(self)
     end
     
